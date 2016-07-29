@@ -25,16 +25,28 @@ namespace MeeCreator
             InitializeComponent();
         }
 
-        private void bOval_Click(object sender, RoutedEventArgs e)
+        private void bMouthOval_Click(object sender, RoutedEventArgs e)
         {
-            rMouth.Visibility = System.Windows.Visibility.Hidden;
             eMouth.Visibility = System.Windows.Visibility.Visible;
+            rMouth.Visibility = System.Windows.Visibility.Hidden;
         }
 
-        private void bRectangle_Click(object sender, RoutedEventArgs e)
+        private void bMouthRectangle_Click(object sender, RoutedEventArgs e)
         {
-            eMouth.Visibility = System.Windows.Visibility.Hidden;
             rMouth.Visibility = System.Windows.Visibility.Visible;
+            eMouth.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void bFaceOval_Click(object sender, RoutedEventArgs e)
+        {
+            eHead.Visibility = System.Windows.Visibility.Visible;
+            rHead.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void bFaceRectangle_Click(object sender, RoutedEventArgs e)
+        {
+            rHead.Visibility = System.Windows.Visibility.Visible;
+            eHead.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }

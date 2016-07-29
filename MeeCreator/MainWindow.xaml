@@ -6,39 +6,76 @@
         xmlns:local="clr-namespace:MeeCreator"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="600" HorizontalAlignment="Center">
+    <Window.Resources>
+        <local:InvertDoubleConverter x:Key="InvertDoubleConverter"/>
+    </Window.Resources>
     <StackPanel x:Name="MainContent" Orientation="Horizontal">
         <Canvas Background="Bisque" Height="320" Width="250">
-            <Ellipse Name="Head" Height="250" Width="175" Canvas.Top="35" Canvas.Left="37.5" Fill="Chartreuse"/>
-            <Ellipse Name="LEye" Height="20" Width="30" Canvas.Top="125" Canvas.Left="80" Fill="Fuchsia"/>
-            <Ellipse Name="REye" Height="20" Width="30" Canvas.Top="125" Canvas.Left="140" Fill="Firebrick"/>
+            <Ellipse Name="eHead" Height="250" Width="175" Canvas.Top="35" Canvas.Left="37.5" Fill="Chartreuse" Visibility="Visible"/>
+            <Rectangle Name="rHead" Height="250" Width="175" Canvas.Top="35" Canvas.Left="37.5" Fill="Chartreuse" Visibility="Hidden"/>
+            <Ellipse Name="LEye" Height="20" Width="30" Canvas.Top="{Binding Value, ElementName=sEyesHeight}" Canvas.Left="80" Fill="Fuchsia" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=sEyesSize}" ScaleY="{Binding Value, ElementName=sEyesSize}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="{Binding Value, Converter={StaticResource InvertDoubleConverter}, ElementName=sEyesSpacing}"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse Name="REye" Height="20" Width="30" Canvas.Top="{Binding Value, ElementName=sEyesHeight}" Canvas.Left="140" Fill="Firebrick" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=sEyesSize}" ScaleY="{Binding Value, ElementName=sEyesSize}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="{Binding Value, ElementName=sEyesSpacing}"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
             <Ellipse Name="Nose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="IndianRed"/>
             <Rectangle Name="rMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Navy" Visibility="Hidden"/>
             <Ellipse Name="eMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Navy" Visibility="Visible"/>
         </Canvas>
         <TabControl x:Name="tabControl" Width="340">
             <TabItem Header="Face">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="lFaceHeight" Content="Height" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sFaceHeight" HorizontalAlignment="Left" Margin="125,32,0,0" VerticalAlignment="Top" Width="150" Value="215" Minimum="200" Maximum="230"/>
+                    <Label x:Name="lFaceWidth" Content="Width" HorizontalAlignment="Left" Margin="35,73,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sFaceWidth" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" Value="15" Minimum="5" Maximum="40"/>
+                    <Label x:Name="lFaceShape" Content="Shape" HorizontalAlignment="Left" Margin="35,220,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="bFaceRectangle" Content="Rectangle" HorizontalAlignment="Left" Margin="200,222,0,0" VerticalAlignment="Top" Width="75" Click="bFaceRectangle_Click"/>
+                    <Button x:Name="bFaceOval" Content="Oval" HorizontalAlignment="Left" Margin="120,222,0,0" VerticalAlignment="Top" Width="75" Click="bFaceOval_Click"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Eyes">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="lEyesHeight" Content="Height" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sEyesHeight" HorizontalAlignment="Left" Margin="125,32,0,0" VerticalAlignment="Top" Width="150" Value="125" Minimum="105" Maximum="145"/>
+                    <Label x:Name="lEyesSpacing" Content="Spacing" HorizontalAlignment="Left" Margin="35,73,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sEyesSpacing" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" Value="0" Minimum="-10" Maximum="10"/>
+                    <Label x:Name="lEyesSize" Content="Size" HorizontalAlignment="Left" Margin="35,116,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sEyesSize" HorizontalAlignment="Left" Margin="125,118,0,0" VerticalAlignment="Top" Width="150" Value="1" Minimum="0.5" Maximum="1.5"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Nose">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="lNoseHeight" Content="Height" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top"/>
-                    <Slider x:Name="sNoseHeight" HorizontalAlignment="Left" Margin="125,32,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.968,0.543" Value="155" Minimum="135" Maximum="175"/>
+                    <Slider x:Name="sNoseHeight" HorizontalAlignment="Left" Margin="125,32,0,0" VerticalAlignment="Top" Width="150" Value="155" Minimum="135" Maximum="175"/>
                     <Label x:Name="lNoseLength" Content="Length" HorizontalAlignment="Left" Margin="35,73,0,0" VerticalAlignment="Top"/>
-                    <Slider x:Name="sNoseLength" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.968,0.543" Value="40" Minimum="30" Maximum="50"/>
+                    <Slider x:Name="sNoseLength" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" Value="40" Minimum="30" Maximum="50"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Mouth">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="lMouthHeight" Content="Height" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top"/>
-                    <Slider x:Name="sMouthHeight" HorizontalAlignment="Left" Margin="125,32,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.968,0.543" Value="215" Minimum="200" Maximum="230"/>
+                    <Slider x:Name="sMouthHeight" HorizontalAlignment="Left" Margin="125,32,0,0" VerticalAlignment="Top" Width="150" Value="215" Minimum="200" Maximum="230"/>
                     <Label x:Name="lMouthWidth" Content="Width" HorizontalAlignment="Left" Margin="35,73,0,0" VerticalAlignment="Top"/>
-                    <Slider x:Name="sMouthWidth" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.968,0.543" Value="15" Minimum="5" Maximum="40"/>
-                    <Label x:Name="lShape" Content="Shape" HorizontalAlignment="Left" Margin="35,220,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="bRectangle" Content="Rectangle" HorizontalAlignment="Left" Margin="200,222,0,0" VerticalAlignment="Top" Width="75" Click="bRectangle_Click"/>
-                    <Button x:Name="bOval" Content="Oval" HorizontalAlignment="Left" Margin="120,222,0,0" VerticalAlignment="Top" Width="75" Click="bOval_Click"/>
+                    <Slider x:Name="sMouthWidth" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" Value="15" Minimum="5" Maximum="40"/>
+                    <Label x:Name="lMouthShape" Content="Shape" HorizontalAlignment="Left" Margin="35,220,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="bMouthRectangle" Content="Rectangle" HorizontalAlignment="Left" Margin="200,222,0,0" VerticalAlignment="Top" Width="75" Click="bMouthRectangle_Click"/>
+                    <Button x:Name="bMouthOval" Content="Oval" HorizontalAlignment="Left" Margin="120,222,0,0" VerticalAlignment="Top" Width="75" Click="bMouthOval_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Extra">
