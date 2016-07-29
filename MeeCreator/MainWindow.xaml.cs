@@ -39,14 +39,26 @@ namespace MeeCreator
 
         private void bFaceOval_Click(object sender, RoutedEventArgs e)
         {
-            eHead.Visibility = System.Windows.Visibility.Visible;
             rHead.Visibility = System.Windows.Visibility.Hidden;
+            eHead.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void bFaceRectangle_Click(object sender, RoutedEventArgs e)
         {
-            rHead.Visibility = System.Windows.Visibility.Visible;
             eHead.Visibility = System.Windows.Visibility.Hidden;
+            rHead.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void bNoseOval_Click(object sender, RoutedEventArgs e)
+        {
+            rNose.Visibility = System.Windows.Visibility.Visible;
+            eNose.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void bNoseRectangle_Click(object sender, RoutedEventArgs e)
+        {
+            eNose.Visibility = System.Windows.Visibility.Visible;
+            rNose.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }
