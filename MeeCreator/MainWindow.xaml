@@ -11,7 +11,7 @@
     </Window.Resources>
     <StackPanel x:Name="MainContent" Orientation="Horizontal">
         <Canvas Name="MeeCanvas" Background="Bisque" Height="320" Width="250">
-            <Ellipse Name="eHead" Height="250" Width="175" Canvas.Top="35" Canvas.Left="37.5" Fill="Chartreuse" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+            <Ellipse Name="eHead" Height="250" Width="175" Canvas.Top="35" Canvas.Left="38" Fill="Chartreuse" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="{Binding Value, ElementName=sFaceWidth}" ScaleY="{Binding Value, ElementName=sFaceHeight}"/>
@@ -51,10 +51,10 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Ellipse Name="eNose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="IndianRed"/>
-            <Rectangle Name="rNose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="IndianRed"/>
-            <Rectangle Name="rMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Navy" Visibility="Hidden"/>
+            <Ellipse Name="eNose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="IndianRed" Visibility="Visible"/>
+            <Rectangle Name="rNose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="IndianRed" Visibility="Hidden"/>
             <Ellipse Name="eMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Navy" Visibility="Visible"/>
+            <Rectangle Name="rMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Navy" Visibility="Hidden"/>
         </Canvas>
         <TabControl x:Name="tabControl" Width="340">
             <TabItem Header="Face">
@@ -63,6 +63,9 @@
                     <Slider x:Name="sFaceHeight" HorizontalAlignment="Left" Margin="125,32,0,0" VerticalAlignment="Top" Width="150" Value="1" Minimum=".75" Maximum="1.15"/>
                     <Label x:Name="lFaceWidth" Content="Width" HorizontalAlignment="Left" Margin="35,73,0,0" VerticalAlignment="Top"/>
                     <Slider x:Name="sFaceWidth" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" Value="1" Minimum=".8" Maximum="1.10"/>
+                    <Label x:Name="lFaceColor" Content="Color" HorizontalAlignment="Left" Margin="35,173,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="bFaceBrown" Content="Brown" HorizontalAlignment="Left" Margin="200,175,0,0" VerticalAlignment="Top" Width="75" Click="bFaceBrown_Click"/>
+                    <Button x:Name="bFaceWhite" Content="White" HorizontalAlignment="Left" Margin="120,175,0,0" VerticalAlignment="Top" Width="75" Click="bFaceWhite_Click"/>
                     <Label x:Name="lFaceShape" Content="Shape" HorizontalAlignment="Left" Margin="35,220,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="bFaceRectangle" Content="Rectangle" HorizontalAlignment="Left" Margin="200,222,0,0" VerticalAlignment="Top" Width="75" Click="bFaceRectangle_Click"/>
                     <Button x:Name="bFaceOval" Content="Oval" HorizontalAlignment="Left" Margin="120,222,0,0" VerticalAlignment="Top" Width="75" Click="bFaceOval_Click"/>

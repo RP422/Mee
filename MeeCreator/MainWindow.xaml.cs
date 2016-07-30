@@ -60,5 +60,17 @@ namespace MeeCreator
             eNose.Visibility = System.Windows.Visibility.Visible;
             rNose.Visibility = System.Windows.Visibility.Hidden;
         }
+
+        private void bFaceWhite_Click(object sender, RoutedEventArgs e)
+        {
+            eHead.Fill = new System.Windows.Media.SolidColorBrush(Colors.White);
+            rHead.Fill = new System.Windows.Media.SolidColorBrush(Colors.White);
+        }
+
+        private void bFaceBrown_Click(object sender, RoutedEventArgs e)
+        {
+            eHead.Fill = new System.Windows.Media.SolidColorBrush(Colors.Chocolate);
+            rHead.Fill = new System.Windows.Media.SolidColorBrush(Colors.Chocolate);
+        }
     }
 }
