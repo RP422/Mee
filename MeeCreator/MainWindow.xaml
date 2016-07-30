@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeeCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="600" HorizontalAlignment="Center">
+        Title="Mee Time" Height="350" Width="600" HorizontalAlignment="Center">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <local:InvertDoubleConverter x:Key="InvertDoubleConverter"/>
     </Window.Resources>
     <StackPanel x:Name="MainContent" Orientation="Horizontal">
-        <Canvas Name="MeeCanvas" Background="Bisque" Height="320" Width="250">
-            <Ellipse Name="eHead" Height="250" Width="175" Canvas.Top="35" Canvas.Left="38" Fill="Chartreuse" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+        <Canvas Name="MeeCanvas" Background="LightBlue" Height="320" Width="250">
+            <Ellipse Name="eHead" Height="250" Width="175" Canvas.Top="35" Canvas.Left="38" Fill="White" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="{Binding Value, ElementName=sFaceWidth}" ScaleY="{Binding Value, ElementName=sFaceHeight}"/>
@@ -21,7 +22,7 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Rectangle Name="rHead" Height="250" Width="175" Canvas.Top="35" Canvas.Left="37.5" Fill="Chartreuse" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Name="rHead" Height="250" Width="175" Canvas.Top="35" Canvas.Left="37.5" Fill="Black" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="{Binding Value, ElementName=sFaceWidth}" ScaleY="{Binding Value, ElementName=sFaceHeight}"/>
@@ -31,30 +32,40 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Ellipse Name="LEye" Height="20" Width="30" Canvas.Top="{Binding Value, ElementName=sEyesHeight}" Canvas.Left="80" Fill="Fuchsia" RenderTransformOrigin="0.5,0.5">
+            <Ellipse Name="LEye" Height="20" Width="30" Canvas.Top="{Binding Value, ElementName=sEyesHeight}" Canvas.Left="80" Fill="Black" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform ScaleX="{Binding Value, ElementName=sEyesSize}" ScaleY="{Binding Value, ElementName=sEyesSize}"/>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=sEyesLength}" ScaleY="{Binding Value, ElementName=sEyesWidth}"/>
                         <SkewTransform/>
                         <RotateTransform/>
                         <TranslateTransform X="{Binding Value, Converter={StaticResource InvertDoubleConverter}, ElementName=sEyesSpacing}"/>
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Ellipse Name="REye" Height="20" Width="30" Canvas.Top="{Binding Value, ElementName=sEyesHeight}" Canvas.Left="140" Fill="Firebrick" RenderTransformOrigin="0.5,0.5">
+            <Ellipse Name="REye" Height="20" Width="30" Canvas.Top="{Binding Value, ElementName=sEyesHeight}" Canvas.Left="140" Fill="Black" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform ScaleX="{Binding Value, ElementName=sEyesSize}" ScaleY="{Binding Value, ElementName=sEyesSize}"/>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=sEyesLength}" ScaleY="{Binding Value, ElementName=sEyesWidth}"/>
                         <SkewTransform/>
                         <RotateTransform/>
                         <TranslateTransform X="{Binding Value, ElementName=sEyesSpacing}"/>
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Ellipse Name="eNose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="IndianRed" Visibility="Visible"/>
-            <Rectangle Name="rNose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="IndianRed" Visibility="Hidden"/>
-            <Ellipse Name="eMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Navy" Visibility="Visible"/>
-            <Rectangle Name="rMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Navy" Visibility="Hidden"/>
+            <Ellipse Name="eNose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="Black" Visibility="Visible"/>
+            <Rectangle Name="rNose" Height="{Binding Value, ElementName=sNoseLength}" Width="20" Canvas.Top="{Binding Value, ElementName=sNoseHeight}" Canvas.Left="115" Fill="Black" Visibility="Hidden"/>
+            <Ellipse Name="eMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Black" Visibility="Visible"/>
+            <Rectangle Name="rMouth" Height="{Binding Value, ElementName=sMouthWidth}" Width="60" Canvas.Top="{Binding Value, ElementName=sMouthHeight}" Canvas.Left="95" Fill="Black" Visibility="Hidden"/>
+            <Ellipse Name="eMole" Height="10" Width="10" Canvas.Top="{Binding Value, ElementName=sMoleY}" Canvas.Left="{Binding Value, ElementName=sMoleX}" Fill="Black" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=cbMoleVisibility}" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=sMoleScale}" ScaleY="{Binding Value, ElementName=sMoleScale}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
         </Canvas>
         <TabControl x:Name="tabControl" Width="340">
             <TabItem Header="Face">
@@ -77,8 +88,10 @@
                     <Slider x:Name="sEyesHeight" HorizontalAlignment="Left" Margin="125,32,0,0" VerticalAlignment="Top" Width="150" Value="125" Minimum="105" Maximum="145"/>
                     <Label x:Name="lEyesSpacing" Content="Spacing" HorizontalAlignment="Left" Margin="35,73,0,0" VerticalAlignment="Top"/>
                     <Slider x:Name="sEyesSpacing" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" Value="0" Minimum="-10" Maximum="10"/>
-                    <Label x:Name="lEyesSize" Content="Size" HorizontalAlignment="Left" Margin="35,116,0,0" VerticalAlignment="Top"/>
-                    <Slider x:Name="sEyesSize" HorizontalAlignment="Left" Margin="125,118,0,0" VerticalAlignment="Top" Width="150" Value="1" Minimum="0.5" Maximum="1.5"/>
+                    <Label x:Name="lEyesLength" Content="Length" HorizontalAlignment="Left" Margin="35,116,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sEyesLength" HorizontalAlignment="Left" Margin="125,118,0,0" VerticalAlignment="Top" Width="150" Value="1" Minimum="0.5" Maximum="1.5"/>
+                    <Label x:Name="lEyesWidth" Content="Width" HorizontalAlignment="Left" Margin="35,159,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sEyesWidth" HorizontalAlignment="Left" Margin="125,161,0,0" VerticalAlignment="Top" Width="150" Value="1" Minimum="0.5" Maximum="1.5"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Nose">
@@ -104,7 +117,15 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Extra">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox x:Name="cbMoleVisibility" Content="Mole Visibility" HorizontalAlignment="Left" Margin="70,40,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lMoleY" Content="Vertial" HorizontalAlignment="Left" Margin="35,73,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sMoleY" HorizontalAlignment="Left" Margin="125,75,0,0" VerticalAlignment="Top" Width="150" Value="180" Minimum="35" Maximum="250"/>
+                    <Label x:Name="lMoleX" Content="Horizontal" HorizontalAlignment="Left" Margin="35,108,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sMoleX" HorizontalAlignment="Left" Margin="125,110,0,0" VerticalAlignment="Top" Width="150" Value="175" Minimum="38" Maximum="213"/>
+                    <Label x:Name="lMoleScale" Content="Size" HorizontalAlignment="Left" Margin="35,143,0,0" VerticalAlignment="Top"/>
+                    <Slider x:Name="sMoleScale" HorizontalAlignment="Left" Margin="125,145,0,0" VerticalAlignment="Top" Width="150" Value="1" Minimum=".5" Maximum="1.5"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </StackPanel>
